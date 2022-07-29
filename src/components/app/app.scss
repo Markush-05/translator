@@ -1,0 +1,40 @@
+.container{
+  
+}
+
+
+
+.row{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 100%;
+
+}
+
+.col{
+  padding: 4vw;
+  padding: 60pxMax ;
+}
+
+.col:first-child {
+  border-right: 4px solid #F2F2F2;
+ 
+}
+
+.col:last-child {
+  border-left: 4px solid #F2F2F2;
+ 
+}
+
+
+
+
+
+
+@media (min-width: 720px) {
+    .row{
+      grid-template-columns: repeat(2, 1fr);
+  
+    } 
+  }
+  

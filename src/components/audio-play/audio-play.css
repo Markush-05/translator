@@ -1,0 +1,15 @@
+
+ .audio-btn {
+    text-align: center;
+ }  
+
+.audio-btn .audio-btn__ply::after {
+    display: inline-block;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 22.5px 0 22.5px 34px;
+    border-color: transparent transparent transparent #dddddc;
+    
+}
