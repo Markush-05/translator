@@ -1,0 +1,86 @@
+[
+    {
+        "name": "Dummy",
+        "password":"123",
+        "listSaves": [
+            {   "id": 1,
+                "primaryLeng": "uk",
+                "secondaryLeng": "en",
+                "textValue": "Привіт світd",
+                "texttrans": "Hello world"
+            },
+            {   "id": 2,
+                "primaryLeng": "uk",
+                "secondaryLeng": "en",
+                "textValue": "Я тільки що бачив велику сіру кішку в нашому саду",
+                "texttrans": "I just saw a big grey cat in our garden"
+            },
+            {   "id": 3,
+                    "primaryLeng": "uk",
+                    "secondaryLeng": "en",
+                    "textValue": "Привіт світd",
+                    "texttrans": "Hello world"
+                },
+                {   "id": 4,
+                    "primaryLeng": "uk",
+                    "secondaryLeng": "en",
+                    "textValue": "Я тільки що бачив велику сіру кішку в нашому саду",
+                    "texttrans": "I just saw a big grey cat in our garden"
+            },
+            {   "id": 5,
+                    "primaryLeng": "uk",
+                    "secondaryLeng": "en",
+                    "textValue": "Привіт світd",
+                    "texttrans": "Hello world"
+                },
+                {   "id": 6,
+                    "primaryLeng": "uk",
+                    "secondaryLeng": "en",
+                    "textValue": "Я тільки що бачив велику сіру кішку в нашому саду",
+                    "texttrans": "I just saw a big grey cat in our garden"
+            }
+
+
+        ]
+    },
+    
+    {
+        "name": "123",
+        "password":"123",
+        "listSaves": [
+            {   "id": 2,
+                "primaryLeng": "uk",
+                "secondaryLeng": "en",
+                "textValue": "Я тільки що бачив велику сіру кішку в нашому саду",
+                "texttrans": "I just saw a big grey cat in our garden"
+            },
+            {   "id": 3,
+                    "primaryLeng": "uk",
+                    "secondaryLeng": "en",
+                    "textValue": "Привіт світd",
+                    "texttrans": "Hello world"
+                },
+                {   "id": 4,
+                    "primaryLeng": "uk",
+                    "secondaryLeng": "en",
+                    "textValue": "Я тільки що бачив велику сіру кішку в нашому саду",
+                    "texttrans": "I just saw a big grey cat in our garden"
+            },
+            {   "id": 5,
+                    "primaryLeng": "uk",
+                    "secondaryLeng": "en",
+                    "textValue": "Привіт світd",
+                    "texttrans": "Hello world"
+                },
+                {   "id": 6,
+                    "primaryLeng": "uk",
+                    "secondaryLeng": "en",
+                    "textValue": "Я тільки що бачив велику сіру кішку в нашому саду",
+                    "texttrans": "I just saw a big grey cat in our garden"
+            }
+
+
+        ]
+    }
+
+]

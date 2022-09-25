@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 
-import './input-text.css';
+import './input-text.scss';
 
 
 export default class InputText extends Component {

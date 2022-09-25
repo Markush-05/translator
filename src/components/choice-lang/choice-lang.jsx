@@ -5,11 +5,13 @@ import switchLeng from '../../auxiliary'
 const ChoiceLang = ({changeLeng,ifOnClick})=> {
 
     const data = switchLeng('')
+    
     const itemLeng = data.map((item) => {
 
         return (
             <li  className='lang-list__item' key={item.id }> 
-                        <span onClick={(e)=> changeLeng(e.target.attributes.value.value)} 
+                        <span onClick={(e)=> {
+                            changeLeng(e.target.attributes.value.value) }} 
                         value={item.name} >{item.value} </span>
 
                         
@@ -25,7 +27,7 @@ const ChoiceLang = ({changeLeng,ifOnClick})=> {
                 onClick={(e)=> e.stopPropagation()}>
 
 
-                <ButtonSvg ifOnClick={ifOnClick}/>
+                <ButtonSvg ifOnClick={()=>ifOnClick()} iconName={"cross"}/>
 
                 <ul className="lang-list">
                     {itemLeng}
@@ -38,11 +40,6 @@ const ChoiceLang = ({changeLeng,ifOnClick})=> {
              
         </div>
     )
-}
-
-
-const onClikTwoFactors = ()=>{
-
 }
 
 export default ChoiceLang;

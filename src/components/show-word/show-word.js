@@ -1,6 +1,6 @@
 import React, { Children } from 'react';
 
-import './show-word.css';
+import './show-word.scss';
 
 
 const ShowWord = ({children, props}) => {

@@ -1,12 +1,13 @@
 import React,{Component, Fragment} from 'react';
 
-import './translator.css';
+import './translator.scss';
 import Button from '../button/button';
 import Textarea from '../textarea/textarea';
-import SpriteSvg from '../sprite-svg/sprite-svg';
 import translatorService from '../../services/trans-service'
 import switchLeng from '../../auxiliary'
 import ChoiceLang from '../choice-lang/choice-lang'
+import Spinner from '../spinner';
+import { ButtonSvg } from '../button/button';
 
 const transService = new translatorService();
 
@@ -15,36 +16,42 @@ export default class Translator extends Component {
         textValue:'',
         primaryLeng: 'uk',
         secondaryLeng: 'en',
-        texttrans: '',
-        offOn: true,
-        selecLeng: false,
-        changeLeng: true
+        btnOffOn: true,
+        btnSelecLeng: false,
+        changeLeng: true,
+        loading: false,
+        error: false,
     };
 
-    changeValue = (data) => {
 
+
+    changeValue = (data) => {
         const value = data.target.value
- 
         if (value.length > 1){
-            this.setState({ textValue: value, offOn: false });
+            this.setState({ textValue: value, btnOffOn: false });
         }
         else{
-            this.setState({ textValue: value, offOn: true });
+            this.setState({ textValue: value, btnOffOn: true });
         }   
     }
 
     onOffSelecLeng = (data)=> {
-        this.setState({selecLeng: !(this.state.selecLeng)});  
+        console.log("fr",data)
+        this.setState({btnSelecLeng: !(this.state.btnSelecLeng)});  
 
-        if ( !(data === undefined))  {
-            this.changeLeng(data)
+        if (!(data === undefined) )  {
+            this.changeLeng(data.target.value)
+            console.log("undefined")
         }    
     }
 
     changeLeng = (data)=> {
-        console.log(data)
-
+       
         switch (true){
+            case (data === '&') :
+                const { secondaryLeng , primaryLeng} = this.state
+                this.setState({primaryLeng: secondaryLeng , secondaryLeng: primaryLeng });
+                break;
             case (data === 'p') :
                 this.setState({changeLeng: true });
                 break;
@@ -61,48 +68,54 @@ export default class Translator extends Component {
                 this.onOffSelecLeng()
                  break; 
     
-             default:
-                
-            break;
+             default: 
+                break;
         }    
 
     }
+    
 
 
     onTranslator = (e) => {
         const {primaryLeng,secondaryLeng,textValue } = this.state;
+        this.setState({ textValue: '' , btnOffOn: true, loading: true });
         transService.getTranslation(primaryLeng,secondaryLeng,textValue).then((text) => {
             const texttrans = text.data
             this.props.onAdd({primaryLeng,secondaryLeng,textValue,texttrans});
+            this.setState({ loading: false });
+        }).catch(error => {
+            this.setState({ error: true });
         })
-        this.setState({ textValue: '' , offOn: true});
+        
 
     }
 
-
-
-
     render (){
-        const  { textValue,primaryLeng,secondaryLeng, offOn,selecLeng } = this.state;
+        const  { textValue,primaryLeng,secondaryLeng, btnOffOn,btnSelecLeng,loading,error } = this.state;
 
-        const selectionLeng = selecLeng ? <ChoiceLang changeLeng={this.changeLeng} ifOnClick={this.onOffSelecLeng}/> : null;
+        if (error){
+            this.foo.bar = 100000000 
+        }
+
+        if (loading){
+            return  <Spinner/>
+        }
+
+        const selectionLeng = btnSelecLeng ? <ChoiceLang changeLeng={this.changeLeng} ifOnClick={this.onOffSelecLeng}/> : null;
 
         return (
             <Fragment>
-    
-                 <h2>{textValue}</h2> 
                  {selectionLeng}
 
                  <div className='btn-trans'>
-                    <Button text={switchLeng(primaryLeng)} styl={true} value={'p'}  ifOnClick={this.onOffSelecLeng}/> 
-                    <SpriteSvg id={'arrows'} />                     
-                    <Button text={switchLeng(secondaryLeng)} value={'s'}  ifOnClick={this.onOffSelecLeng}/>
+                    <Button label={switchLeng(primaryLeng)} addStyle={true} value={'p'}  ifOnClick={this.onOffSelecLeng}/>  
+                    <ButtonSvg ifOnClick={()=> this.changeLeng('&')} iconName={'arrows'} />                  
+                    <Button label={switchLeng(secondaryLeng)} value={'s'}  ifOnClick={this.onOffSelecLeng}/>
                  </div>
                 
                  <Textarea textValue={textValue}
                     changeValue={this.changeValue}/>
-
-                 <Button text={"Перекласти"} ifOnClick={this.onTranslator}  offOn={offOn} />
+                 <Button label={"Перекласти"} ifOnClick={this.onTranslator}  btnOffOn={btnOffOn} title={"Від 2 символів"}/>
 
            </Fragment>
         )

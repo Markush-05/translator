@@ -1,40 +1,37 @@
-import './button.css';
+import './button.scss';
 
 
 import SpriteSvg from '../sprite-svg/sprite-svg';
 
-const Button = ({text, styl, ifOnClick, offOn, value})=> {
-
-    const classes = styl ? "btn btn-outline-hotter" : "btn btn-outline-cold ";
-    const styles = offOn ?  classes + " disabled" : classes;
-   // const disableBtn = offOn ? disabled : null;
-   
+const Button = ({label, addStyle, ifOnClick, btnOffOn, value,title})=> {
+    const classes = addStyle ? "btn btn-outline-hotter" : "btn btn-outline-cold ";
+    const styles = btnOffOn ?  classes + " disabled" : classes;
 
     if (!(ifOnClick === undefined)){
+       
         return (
             <button type="button" className={styles}
-                onClick={(e)=>{ifOnClick(e.target.offsetParent.value)}}
-                disabled={offOn} value={value}
-                ><span>{text}</span></button>
+                onClick={(e)=>{ifOnClick(e)}}
+                disabled={btnOffOn} value={value}
+                title={title}
+                >{label}</button>
     )}
 
     return (
             <button type="button" className={styles}
-                ><span>{text}</span></button>
+                >{label}</button>
 
     )
 }
 
-const ButtonSvg = ({text, styl, ifOnClick, offOn})=> {
-
-    const classes = styl ? "btn btn-outline-cold " : "btn  btn-svg";
-   
-
+const ButtonSvg = ({label, addStyle, ifOnClick, btnOffOn, iconName})=> {
+    const classes = addStyle ? `btn btn-svg ${addStyle}` : "btn  btn-svg";
+    
     return (
             <button type="button" className={classes}
                 onClick={ (e)=>{ifOnClick(e)} }>
                     
-                    <SpriteSvg id={"cross"}  />
+                    <SpriteSvg id={iconName}  />
             </button>
 
       

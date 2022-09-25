@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
 
 import Translator from '../translator/translator';
 import ResultTrans from '../result-trans/result-trans';
-
+import Button, { ButtonSvg } from '../button/button';
+import ErrorBoundery from '../error-boundery/error-boundery';
+import { deletItem } from '../../auxiliary';
+import Navbar from '../navbar/navbar';
 
 //const post = new SwapiService();
 
@@ -10,9 +13,6 @@ import ResultTrans from '../result-trans/result-trans';
 
 
 export default class PageTranslator extends Component {
-
-  maxId = 100;
-
   state = {
     
     transData: [
@@ -25,14 +25,13 @@ export default class PageTranslator extends Component {
     ],
   }
 
-  createTransItem (props) {
-    const {   primaryLeng,secondaryLeng,textValue,texttrans} = props
+  createTransItem ({primaryLeng,secondaryLeng,textValue,texttrans}) {
     return {
         primaryLeng,
         secondaryLeng,
         textValue,
         texttrans,
-        id: this.maxId++
+        id:  Date.now()
     }
   }
 
@@ -41,45 +40,42 @@ export default class PageTranslator extends Component {
     const newItem = this.createTransItem(data)
     this.setState(({ transData }) => {
       const newArr = [
-          ... transData,newItem
+          newItem , ... transData
       ];
       return{
-        transData: [... transData,newItem ]
+        transData: newArr
       };
     });
   }
 
-  deletItem = (id) => {
-    this.setState(({ transData }) => {
-      const idx = transData.findIndex((el) => el.id === id);
-
-      const newMash = [
-          ... transData.slice(0, idx), 
-          ...transData.slice(idx + 1)
-      ];
-
-      return{
-        transData: newMash
-      };
-  });
+  toSave = (id,data)=>{
+    this.props.changeItem(data[0])
+    this.setState({transData: deletItem(id, data) })
   }
   
 
   render() {
 
     const elements = this.state.transData.map((datd) => {
+      return (
+        <Fragment key={datd.id}>
+          
+          <ResultTrans { ... datd }  ifOnClick={()=> this.setState({transData: deletItem(datd.id, this.state.transData) })} />
+          <Button label={"Добавити до повторень"}  ifOnClick={() => this.toSave(datd.id,this.state.transData)}/>
 
-      return <ResultTrans { ... datd } key={datd.id} ifOnClick={()=> this.deletItem(datd.id)} />
+        </Fragment>
+          )
       });
 
 
     return (
-
-      
-          <div className='col'>
+        <>
+          <ErrorBoundery>
+            <Navbar navPrivate updatLest={this.props.updatLest}/>
             <Translator onAdd={this.onAdd}/>
-              { elements  }
-          </div>  
+          </ErrorBoundery>
+            { elements  }
+        </>  
        
       
 

@@ -1,4 +1,4 @@
-import './sprite-svg.css';
+import './sprite-svg.scss';
 
 const SpriteSvg = ({id})=> {
 

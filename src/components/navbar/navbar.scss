@@ -1,0 +1,39 @@
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+    padding: 0 15px;
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        
+    }
+
+    &__items {
+        margin-left: 5px;
+        
+        a,button {
+            border: none;
+            background-color: unset;
+            text-decoration: none;
+            color: darkorchid;
+            font-family: cursive;
+            font-size: 16px;
+            font-weight: 400;
+         &:hover{
+            text-decoration: underline;
+            font-weight: 500;
+         }
+        }
+
+        
+        .active{
+            font-weight: 700;
+            color: blue;
+        }
+    }
+}
+

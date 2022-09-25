@@ -1,0 +1,17 @@
+.show-word{
+    font-size: calc(1.325rem + 3vw);
+    text-align: center;
+    
+}
+
+.show-word--blur{
+    filter: blur(15px);
+    transform: translateZ(0) scale(1.0, 1.0);
+}
+
+.show-word:hover{
+    
+    filter: blur(0px);
+}
+
+

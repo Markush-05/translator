@@ -1,3 +1,9 @@
 import switchLeng from './auxiliary'
 
-export default switchLeng
+import deletItem from './delet-Item'
+
+import addItem from './addItem';
+
+export default switchLeng;
+
+export {deletItem,addItem};

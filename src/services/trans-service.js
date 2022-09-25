@@ -9,7 +9,7 @@ export default class translatorService {
   
     getTranslation = async (primaryLeng,secondaryLeng,text) => {
   
-      const res = await fetch(`${this._urlGet}?source=${text}&lang=${primaryLeng}-${secondaryLeng}  `).then((response) => response.json())
+      const res = await fetch(`${this._urlGet}?source=${text}&lang=${primaryLeng}-${secondaryLeng}`).then((response) => response.json())
       .then((responseData) => {
         return responseData;
       })

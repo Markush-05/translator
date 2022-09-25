@@ -5,27 +5,35 @@ import switchLeng from '../../auxiliary'
 
 const ResultTrans = (props)=> {
 
-    const {   ifOnClick,primaryLeng,secondaryLeng,textValue,texttrans} = props
+    const {   ifOnClick,primaryLeng ,secondaryLeng ,textValue,texttrans} = props
 
-    
-    
     return (
         <Fragment>
             <div className='result-trans'>
-                <ButtonSvg ifOnClick={ifOnClick}/>
-                <div className='result-trans__item'>
-                    <span className='result-trans__pla-hol'>{switchLeng(primaryLeng)}</span>
-                    <h3 className='result-trans__text'>{textValue}</h3>
-                </div>
-                <div className='result-trans__item'>
-                    <span className='result-trans__pla-hol'>{switchLeng(secondaryLeng)}</span>
-                    <h3 className='result-trans__text'>{texttrans}</h3>
-                </div>
+                <ButtonSvg ifOnClick={ifOnClick} addStyle={"result-trans__btn"} iconName={"cross"}/>
+                
+                {itemRender(primaryLeng,textValue)}
+
+                {itemRender(secondaryLeng,texttrans)}
+
             </div>
-            <Button text={"Добаби до повторень"} />
+            
         </Fragment>
 
     )
 }
 
 export default ResultTrans;
+
+
+const itemRender = (leng = ' ',text) => {
+
+    return (
+        <div className='result-trans__item'>
+            <span className='result-trans__pla-hol'>{switchLeng(leng)}</span>
+            <h3 className='result-trans__text'>{text}</h3>
+        </div>
+
+    )
+
+}

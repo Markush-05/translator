@@ -9,6 +9,7 @@
     &__item {
         border-bottom: 1px solid #F2F2F2;
         padding: 15px 0;
+        padding-right: 5px;
     }
 
     &__pla-hol {
@@ -29,6 +30,17 @@
         line-height: 23px;
 
         color: #000000;
+    }
+
+    &__btn{
+        top: 0;
+        right: 0;
+        position: absolute;
+
+        .icon{
+            width: 3vW;
+            height: 3vW;
+        }
     }
 
 }
